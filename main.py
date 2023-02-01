@@ -38,6 +38,8 @@ def main():
 
     wait_pattern = compile(r"^W{1}(\d*)$")
 
+
+
     class SbbConnection(SBBClient):
         def __init__(self, ip):
             timeout: float = 10.0
@@ -86,7 +88,7 @@ def main():
         async def going_online(self) -> None:
             online = False
             loop_counter = 0
-            while online is not True:
+            while not online:
                 loop_counter += 1
                 await sleep(1)
                 online = await self.is_in_overworld()
@@ -95,7 +97,7 @@ def main():
 
             connected = False
             loop_counter2 = 0
-            while connected is not True:
+            while not connected:
                 loop_counter2 += 1
                 await sleep(2)
                 connected = await self.is_connected()
@@ -123,6 +125,7 @@ def main():
                 inRaid = not await self.is_in_overworld()
                 await sleep(5)
                 log.info(f"Times though raid: {loop_counter}")
+
 
     class Bot(commands.InteractionBot):
         def __init__(self, *args, **kwargs) -> None:
