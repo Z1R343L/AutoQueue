@@ -36,6 +36,8 @@ def main():
 
     wait_pattern = re.compile(r"^W(\d*)$")
 
+
+
     class SbbConnection(SBBClient):
         def __init__(self, ip):
             self.overworldPointer = ("0x43A7848", "0x348", "0x10", "0xD8", "0x28")
@@ -129,6 +131,7 @@ def main():
                 inRaid = not await self.is_in_overworld()
                 await sleep(5)
                 log.info(f"Times though raid: {loop_counter}")
+
 
     class Bot(commands.InteractionBot):
         def __init__(self, *args, **kwargs) -> None:
